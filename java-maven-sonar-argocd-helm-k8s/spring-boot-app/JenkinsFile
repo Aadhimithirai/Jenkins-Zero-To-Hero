@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://35.170.248.23:9000"
+        SONAR_URL = "http://100.55.23.228:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -61,8 +61,8 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    //cd java-maven-sonar-argocd-helm-k8s || cd /var/lib/jenkins/workspace/springapp-pipeline
-                    //git config --global --add safe.directory "$(pwd)"
+                    cd /var/lib/jenkins/workspace/springapp-pipeline
+                    git config --global --add safe.directory /var/lib/jenkins/workspace/springapp-pipeline
                     git config user.email "amithirai123@gmail.com"
                     git config user.name "Aadhimithirai"
                     BUILD_NUMBER=${BUILD_NUMBER}
